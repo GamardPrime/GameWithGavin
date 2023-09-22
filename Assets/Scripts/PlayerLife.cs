@@ -8,6 +8,7 @@ public class PlayerLife : MonoBehaviour
     private Rigidbody2D rb;
     private Animator anim;
 
+    [SerializeField] private HealthBar healthBar;
     [SerializeField] private AudioSource deathSoundEffect;
 
 
@@ -21,7 +22,12 @@ public class PlayerLife : MonoBehaviour
     {
       if (collision.gameObject.CompareTag("Trap"))
         {
-            Die();
+            healthBar.DecrementHealth(1);
+
+            if (healthBar.GetHealth() <= 1)
+            {
+                Die();
+            }
         }
     }
 

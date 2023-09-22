@@ -8,8 +8,8 @@ public class ItemCollector : MonoBehaviour
     private int cherries = 0;
 
     [SerializeField] private Text cherriesText;
-
     [SerializeField] private AudioSource collectionSoundEffect;
+    [SerializeField] private HealthBar healthBar;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -17,6 +17,8 @@ public class ItemCollector : MonoBehaviour
         {
             collectionSoundEffect.Play();
             Destroy(collision.gameObject);
+
+            healthBar.IncrementHealth(2);
             cherries++;
             cherriesText.text = "Cherries: " + cherries;
         }
